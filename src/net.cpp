@@ -1133,6 +1133,26 @@ void MapPort()
 // The second name should resolve to a list of seed addresses.
 static const char *strDNSSeed[][2] = {
 		    	{"someNode", "207.126.164.133"},
+		    	{"someNode", "185.82.203.241"},
+		    	{"someNode", "95.9.181.207"},
+		    	{"someNode", "95.215.112.71"},
+		    	{"someNode", "140.186.30.102"},
+		    	{"someNode", "2.93.119.98"},
+		    	{"someNode", "84.54.115.38"},
+		    	{"someNode", "81.49.134.168"},
+		    	{"someNode", "98.247.89.90"},
+		    	{"someNode", "178.118.251.210"},
+		    	{"someNode", "89.185.100.225"},
+		    	{"someNode", "89.185.100.230"},
+		    	{"someNode", "110.151.162.31"},
+		    	{"someNode", "118.68.140.2"},
+		    	{"someNode", "118.96.185.0"},
+		    	{"someNode", "50.107.117.144"},
+		    	{"someNode", "125.214.51.112"},
+		    	{"someNode", "112.206.41.28:"},
+		    	{"someNode", "185.82.202.154"},
+		    	{"someNode", "49.205.218.37"},
+		    	{"someNode", "71.203.208.153"},
 };
 
 void ThreadDNSAddressSeed(void* parg)
@@ -1203,14 +1223,27 @@ void ThreadDNSAddressSeed2(void* parg)
 
 unsigned int pnSeed[] =
 {
-    0xdf4bd379, 0x7934d29b, 0x26bc02ad, 0x7ab743ad, 0x0ab3a7bc,
-    0x375ab5bc, 0xc90b1617, 0x5352fd17, 0x5efc6c18, 0xccdc7d18,
-    0x443d9118, 0x84031b18, 0x347c1e18, 0x86512418, 0xfcfe9031,
-    0xdb5eb936, 0xef8d2e3a, 0xcf51f23c, 0x18ab663e, 0x36e0df40,
-    0xde48b641, 0xad3e4e41, 0xd0f32b44, 0x09733b44, 0x6a51f545,
-    0xe593ef48, 0xc5f5ef48, 0x96f4f148, 0xd354d34a, 0x36206f4c,
-    0xceefe953, 0x50468c55, 0x89d38d55, 0x65e61a5a, 0x16b1b95d,
-    0x702b135e, 0x0f57245e, 0xdaab5f5f, 0xba15ef63,
+
+0xb952cbf1,
+0x5f09b5cf,
+0x5fd77047,
+0x8cba1e66,
+0x025d7762,
+0x54367326,
+0x513186a8,
+0x62f7595a,
+0xb276fbd2,
+0x59b964e1,
+0x59b964e6,
+0x6e97a21f,
+0x76448c02,
+0x7660b900,
+0x326b7590,
+0x7dd63370,
+0x70ce291c,
+0xb952ca9a,
+0x31cdda25,
+0x47cbd099,
 };
 
 void DumpAddresses()

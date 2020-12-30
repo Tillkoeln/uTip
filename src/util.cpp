@@ -1163,6 +1163,32 @@ void ShrinkDebugFile()
     }
 }
 
+/* Pauses a thread's execution for a number of milliseconds */
+void MilliSleep(int64_t nMilliSecs) {
+
+#ifdef WIN32
+    /* Not using the WinAPI Sleep() because of a poor resolution */ 
+
+    HANDLE timer;
+    LARGE_INTEGER ft;
+
+    /* 100ns intervals, negative means relative time */
+    ft.QuadPart = -(10 * 1000 * nMilliSecs);
+
+    timer = CreateWaitableTimer(NULL, TRUE, NULL);
+    SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
+    WaitForSingleObject(timer, INFINITE);
+    CloseHandle(timer);
+#else
+    /* usleep() is obsolete by POSIX.1-2001 and out of specification by POSIX.1-2008 */
+
+    timespec time;
+    time.tv_sec = nMilliSecs / 1000;
+    time.tv_nsec = (nMilliSecs % 1000) * 1000000;
+    nanosleep(&time, 0);
+#endif
+}
+
 //
 // "Never go to sea with two chronometers; take one or three."
 // Our three time sources are:

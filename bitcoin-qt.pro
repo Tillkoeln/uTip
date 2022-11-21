@@ -22,17 +22,17 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
 
 
-BOOST_LIB_SUFFIX=-mgw49-mt-s-1_55
-BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
-BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
-BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
-BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
-OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1h/include
-OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1h
-MINIUPNPC_INCLUDE_PATH=C:/deps/
-MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
-QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.3
-QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.3/.libs
+windows:BOOST_LIB_SUFFIX=-mgw49-mt-s-1_55
+windows:BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
+windows:BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
+windows:BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
+windows:BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
+windows:OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1h/include
+windows:OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1h
+windows:MINIUPNPC_INCLUDE_PATH=C:/deps/
+windows:MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
+windows:QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.3
+windows:QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.3/.libs
 
 
 
@@ -468,7 +468,6 @@ LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 # -lgdi32 has to happen after -lcrypto (see  #681)
 windows:LIBS += -lws2_32 -lshlwapi -lmswsock -lole32 -loleaut32 -luuid -lgdi32
 LIBS += -lboost_system$$BOOST_LIB_SUFFIX -lboost_filesystem$$BOOST_LIB_SUFFIX -lboost_program_options$$BOOST_LIB_SUFFIX -lboost_thread$$BOOST_THREAD_LIB_SUFFIX
-windows:LIBS += -lboost_chrono$$BOOST_LIB_SUFFIX
 
 contains(RELEASE, 1) {
     !windows:!macx {

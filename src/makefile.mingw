@@ -20,7 +20,6 @@ LIBS= \
  -l boost_filesystem-mgw49-mt-s-1_55 \
  -l boost_program_options-mgw49-mt-s-1_55 \
  -l boost_thread-mgw49-mt-s-1_55 \
- -l boost_chrono-mgw49-mt-s-1_55 \
  -l db_cxx \
  -l ssl \
  -l crypto

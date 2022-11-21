@@ -371,7 +371,7 @@ string FormatMoney(int64_t n, bool fPlus)
     int64_t n_abs = (n > 0 ? n : -n);
     int64_t quotient = n_abs/COIN;
     int64_t remainder = n_abs%COIN;
-    string str = strprintf("%"PRId64".%08"PRId64, quotient, remainder);
+    string str = strprintf("%" PRId64 ".%08" PRId64, quotient, remainder);
 
     // Right-trim excess zeros before the decimal point:
     int nTrim = 0;
@@ -1163,6 +1163,32 @@ void ShrinkDebugFile()
     }
 }
 
+/* Pauses a thread's execution for a number of milliseconds */
+void MilliSleep(int64_t nMilliSecs) {
+
+#ifdef WIN32
+    /* Not using the WinAPI Sleep() because of a poor resolution */ 
+
+    HANDLE timer;
+    LARGE_INTEGER ft;
+
+    /* 100ns intervals, negative means relative time */
+    ft.QuadPart = -(10 * 1000 * nMilliSecs);
+
+    timer = CreateWaitableTimer(NULL, TRUE, NULL);
+    SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0);
+    WaitForSingleObject(timer, INFINITE);
+    CloseHandle(timer);
+#else
+    /* usleep() is obsolete by POSIX.1-2001 and out of specification by POSIX.1-2008 */
+
+    timespec time;
+    time.tv_sec = nMilliSecs / 1000;
+    time.tv_nsec = (nMilliSecs % 1000) * 1000000;
+    nanosleep(&time, 0);
+#endif
+}
+
 //
 // "Never go to sea with two chronometers; take one or three."
 // Our three time sources are:
@@ -1207,7 +1233,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
 
     // Add data
     vTimeOffsets.input(nOffsetSample);
-    printf("Added time data, samples %d, offset %+"PRId64" (%+"PRId64" minutes)\n", vTimeOffsets.size(), nOffsetSample, nOffsetSample/60);
+    printf("Added time data, samples %d, offset %+" PRId64 " (%+" PRId64 " minutes)\n", vTimeOffsets.size(), nOffsetSample, nOffsetSample/60);
     if (vTimeOffsets.size() >= 5 && vTimeOffsets.size() % 2 == 1)
     {
         int64_t nMedian = vTimeOffsets.median();
@@ -1242,10 +1268,10 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
         }
         if (fDebug) {
             BOOST_FOREACH(int64_t n, vSorted)
-                printf("%+"PRId64"  ", n);
+                printf("%+" PRId64 "  ", n);
             printf("|  ");
         }
-        printf("nTimeOffset = %+"PRId64"  (%+"PRId64" minutes)\n", nTimeOffset, nTimeOffset/60);
+        printf("nTimeOffset = %+" PRId64 "  (%+" PRId64 " minutes)\n", nTimeOffset, nTimeOffset/60);
     }
 }
 
